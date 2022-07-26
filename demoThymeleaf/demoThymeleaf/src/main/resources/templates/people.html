@@ -7,6 +7,9 @@
 <body>
   <h1>People</h1>
 
+    <p th:if="${people.isEmpty()}">Annuaire vide</p>
+
+    <p th:unless="${people.isEmpty}">Voici la list des personnes</p>
     <ul th:each="p:${people}">
         <li th:text="${p.firstName} + ' ' + ${p.lastName}"></li>
     </ul>

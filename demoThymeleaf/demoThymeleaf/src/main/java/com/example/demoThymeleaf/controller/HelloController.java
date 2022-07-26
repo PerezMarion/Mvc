@@ -41,7 +41,7 @@ public class HelloController {
 
         model.addAttribute("monmessage", message);
 
-        return "hello";
+        return "hello.html";
     }
 
     // Ici :
@@ -54,7 +54,7 @@ public class HelloController {
     // hello.html envoie une réponse http de la forme "'Mon message ' + ${monmessage}"
     // c'est à dire ici "Mon message 2022-07-26T12:26:25" (par exemple)
     // La page étant dynamique, si je la recharge (sans relancer le serveur), la date et l'heure seront
-    // mises à jour
+    // mises à jour grace au return
 
     @GetMapping("/time")
     public String time(Model model) {
@@ -62,7 +62,7 @@ public class HelloController {
 
         model.addAttribute("monmessage", message);
 
-        return "hello";
+        return "hello.html";
     }
 
     @GetMapping("/people")
@@ -70,6 +70,6 @@ public class HelloController {
 
         model.addAttribute("people", helloService.getPeople());
 
-        return "people";
+        return "people.html";
     }
 }
