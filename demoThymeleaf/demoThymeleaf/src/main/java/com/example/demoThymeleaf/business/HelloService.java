@@ -15,12 +15,4 @@ public class HelloService {
     public String sayTime() {
         return LocalDateTime.now().toString();
     }
-
-    public List<Person> getPeople() {
-        ArrayList<Person> people = new ArrayList<>();
-        people.add(new Person("Alain", "Delon"));
-        people.add(new Person("Marie", "Dupont"));
-        people.add(new Person("Alex", "Dupuis"));
-        return people;
-    }
 }

@@ -1,10 +1,13 @@
 package com.example.demoThymeleaf.controller;
 
+import com.example.demoThymeleaf.business.DirectoryService;
 import com.example.demoThymeleaf.business.HelloService;
+import com.example.demoThymeleaf.business.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HelloController {
@@ -65,10 +68,22 @@ public class HelloController {
         return "hello.html";
     }
 
+    @Autowired
+    DirectoryService directoryService;
+
     @GetMapping("/people")
     public String people(Model model){
 
-        model.addAttribute("people", helloService.getPeople());
+        model.addAttribute("people", directoryService.getPeople());
+
+        return "people.html";
+    }
+
+    @PostMapping("/people")
+    public String addPerson(Person person, Model model) {
+
+        directoryService.addPerson(person);
+        model.addAttribute("people", directoryService.getPeople());
 
         return "people.html";
     }
