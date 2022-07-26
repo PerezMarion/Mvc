@@ -7,11 +7,15 @@
 <body>
   <h1>People</h1>
 
-    <p th:if="${people.isEmpty()}">Annuaire vide</p>
+  <div th:switch="${#lists.size(people)}">
+      <p th:case="'0'">Annuaire vide !</p>
+      <p th:case="'1'" th:text="'La seule personne de l annuaire s appelle: ' + ${people.get(0).firstName} + ' ' + ${people.get(0).lastName}"></p>
+      <div th:case="*">
+          <ul th:each="p:${people}">
+              <li th:text="${p.firstName} + ' ' + ${p.lastName}"></li>
+          </ul>
+      </div>
+  </div>
 
-    <p th:unless="${people.isEmpty}">Voici la list des personnes</p>
-    <ul th:each="p:${people}">
-        <li th:text="${p.firstName} + ' ' + ${p.lastName}"></li>
-    </ul>
 </body>
 </html>
